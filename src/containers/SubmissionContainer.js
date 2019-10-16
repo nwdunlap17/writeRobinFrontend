@@ -49,11 +49,12 @@ export default class SubmissionContainer extends Component{
                 <ul className='pending-submission-list'>
                     {this.renderPendingSubmissions()}
                 </ul>
+                {(!!localStorage.getItem('auth_token') && localStorage.getItem('auth_token') !== 'null')?
                 <form onSubmit={this.addSubmission}>
                     <textarea className='text-area' value={this.state.draft} onChange={event => this.setState({draft: event.target.value, characters: event.target.value.length})}/>
                     <p>{400-this.state.characters}/400</p>
                     <input type='submit'/>
-                </form>
+                </form> : null }
             </div>
             )
     }
