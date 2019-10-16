@@ -7,7 +7,7 @@ export default class LoginButton extends Component {
         if (localStorage.getItem('auth_token') && localStorage.getItem('auth_token') !== 'null'){
             return (<p>{localStorage.getItem('user')}</p>)
         } else {
-            return (<Link to={'/login'}>Login</Link>)
+            return (<Link className='black' to={'/login'}>Login</Link>)
         }
     }
 

@@ -5,6 +5,6 @@ export default class HomeButton extends Component {
 
 
     render(){
-        return (<Link to={'/home'}>Home</Link>)
+        return (<Link className='black' to={'/home'}>Home</Link>)
     }
 }
