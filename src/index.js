@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import actionCable from 'actioncable'
 const CableApp = {}
-CableApp.cable = actionCable.createConsumer(`ws://lit-atoll-57112.herokuapp.com/cable`)
+CableApp.cable = actionCable.createConsumer(`wss://lit-atoll-57112.herokuapp.com/cable`)
 
 let backendURL = 'https://lit-atoll-57112.herokuapp.com'
 
