@@ -1,0 +1,77 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.navbar {
+  background-color: steelblue;
+
+}
+
+#Page-Body {
+  background-color: #DDEEFF;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+#Page-Content {
+  /* flex-shrink: 0; */
+  max-width: 90%;
+  max-width: 600px;
+  min-width: 50vw;
+}
+
+.submission {
+  background-color: #F8F8F8;
+  padding-bottom: 0;
+}
+.addendum {
+  /* background-color: #F8F8F8; */
+  color: #AAAAAA;
+  padding-bottom: 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.vote-button {
+  display: inline;
+  min-width: 10px;
+}
+
+.black {
+  color: #000000;
+}
+
+.pending-submission-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.submssion-list-item {
+  margin-bottom: 20px;
+}
+
+.text-area {
+  width: 100%;
+  height: 120px;
+  word-wrap: break-word;
+}
