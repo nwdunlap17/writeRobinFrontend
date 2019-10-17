@@ -4,7 +4,7 @@ import SubmissionView from '../components/SubmissionView'
 export default class SubmissionContainer extends Component{
     constructor(props){
         super(props)
-        this.state = {draft: '', characters: 0}
+        this.state = {draft: '', characters: 0, showSubForm: false}
     }
 
     renderPendingSubmissions = () => {
@@ -43,18 +43,27 @@ export default class SubmissionContainer extends Component{
         .then(()=>{this.setState({draft: ''})})
     }
 
+    renderSubmissionForm = () => {
+        if (!!localStorage.getItem('auth_token') && localStorage.getItem('auth_token') !== 'null'){
+            if(this.state.showSubForm == true){
+                return(<form onSubmit={this.addSubmission}>
+                        <textarea className='text-area' value={this.state.draft} onChange={event => this.setState({draft: event.target.value, characters: event.target.value.length})}/>
+                        <p>{400-this.state.characters}/400</p>
+                        <input type='submit'/>
+                       </form>)
+            } else {
+                return (<button onClick={() => this.setState({showSubForm:true})}>Write New Submission</button>)
+            }
+        } else {return null}
+    }
+
     render(){
         return (
             <div>
+                {this.renderSubmissionForm()}
                 <ul className='pending-submission-list'>
                     {this.renderPendingSubmissions()}
                 </ul>
-                {(!!localStorage.getItem('auth_token') && localStorage.getItem('auth_token') !== 'null')?
-                <form onSubmit={this.addSubmission}>
-                    <textarea className='text-area' value={this.state.draft} onChange={event => this.setState({draft: event.target.value, characters: event.target.value.length})}/>
-                    <p>{400-this.state.characters}/400</p>
-                    <input type='submit'/>
-                </form> : null }
             </div>
             )
     }

@@ -76,22 +76,22 @@ export default class StoryContainer extends Component {
     render(){
         return(
         <div>
-
-            {this.state.loaded? <div>
-                <h3>{this.state.story.title}</h3>
-                <Canon story={this.state.story} submitVote={this.submitVote}/>
-                {/* <VoteButtons/> */}
-                <h6>Pending</h6>
-                <SubmissionContainer backendURL={this.props.backendURL} story={this.state.story} submitVote={this.submitVote}/>
-                <StorySocket 
-                    backendURL={this.props.backendURL}
-                    storyID = {this.state.story.id}
-                    data-cableApp={this.props['data-cableApp']} 
-                    updateStory={this.updateStoryFromSocket} 
-                    addSubmission={this.AddSubmissionFromSocket}
-                    updateAudience={this.updateAudience}
-                />
-            </div>                
+            {this.state.loaded? 
+                <div>
+                    <h3>{this.state.story.title}</h3>
+                    <Canon story={this.state.story} submitVote={this.submitVote}/>
+                    {/* <VoteButtons/> */}
+                    <h6>What happens next?</h6>
+                    <SubmissionContainer backendURL={this.props.backendURL} story={this.state.story} submitVote={this.submitVote}/>
+                    <StorySocket 
+                        backendURL={this.props.backendURL}
+                        storyID = {this.state.story.id}
+                        data-cableApp={this.props['data-cableApp']} 
+                        updateStory={this.updateStoryFromSocket} 
+                        addSubmission={this.AddSubmissionFromSocket}
+                        updateAudience={this.updateAudience}
+                    />
+                </div>                
             : null}
         </div>)
     }
