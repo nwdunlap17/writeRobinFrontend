@@ -31,9 +31,13 @@ class SignInForm extends Component{
         })
         .then(resp => resp.json())
         .then(json => {
-            localStorage.setItem('auth_token',json.token)
-            localStorage.setItem('user',json.username)
-            this.props.updateUserName(this.state.username)
+            if (!json.error){
+                localStorage.setItem('auth_token',json.token)
+                localStorage.setItem('user',json.username)
+                this.props.updateUserName(this.state.username)
+            }else{
+                this.setState({error:true})
+            }
         })
     }
 
@@ -42,6 +46,12 @@ class SignInForm extends Component{
         let redirect = (localStorage.getItem('auth_token') && localStorage.getItem('auth_token') !== 'null')? <Redirect to='/home'/> : null
         return (
             <div>
+                {this.state.error?
+                <div className="alert alert-danger" role="alert">
+                    Either the username or password is incorrect!
+                </div> : null}
+                {this.state.redirect? <Redirect to='/home'/> : null}
+
             <form onSubmit={this.submitLogin}>
                 <p>Username:</p>
                 <input type='text' value={this.state.username} onChange={this.updateUsername}></input>

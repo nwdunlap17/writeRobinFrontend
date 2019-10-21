@@ -56,7 +56,7 @@ class SignUpForm extends Component{
         return (
             <form onSubmit={this.submitLogin}>
                 {this.state.failed?
-                <div class="alert alert-danger" role="alert">
+                <div className="alert alert-danger" role="alert">
                     That username is already taken!
                 </div> : null}
                 {this.state.redirect? <Redirect to='/home'/> : null}

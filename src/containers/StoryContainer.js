@@ -40,13 +40,24 @@ export default class StoryContainer extends Component {
         this.setState({story: updatedStory})
     }
 
-    AddSubmissionFromSocket = newSubmission => {
-        
+    AddSubmissionFromSocket = (submission,author) => {
+        let newSubmission = {...submission,author:author}
+
         this.setState(prevState => {
             prevState.story.submissions.push(newSubmission)
             return {story: {...prevState.story, submissions: prevState.story.submissions }}
         }
         )
+    }
+
+    RemoveSubmissionFromSocket = submissionID => {
+        this.setState(prevState => {
+            let remainingSubs = prevState.story.submissions.filter(sub => {
+                return sub.id !== parseInt(submissionID)
+            })
+            let newStory = {...prevState.story, submissions: remainingSubs};
+            return ({story: newStory})
+        })
     }
 
     submitVote = (submissionID, rating) => {
@@ -73,15 +84,31 @@ export default class StoryContainer extends Component {
         })
     }
 
+    keepTrackOfLength = () => {
+        let remaining = this.state.story.length-this.state.story.current_length
+        if (remaining === 1){
+            return <h6>How does it end?</h6>
+        } else {
+            if (remaining > 1){
+                return <h6>What happens next?</h6>
+            }
+            else {return null} //Story is over
+
+        }
+
+        
+    }
+
     render(){
         return(
         <div>
             {this.state.loaded? 
                 <div>
                     <h3>{this.state.story.title}</h3>
+                    <p>{this.state.story.current_length}/{this.state.story.length}</p>
                     <Canon story={this.state.story} submitVote={this.submitVote}/>
                     {/* <VoteButtons/> */}
-                    <h6>What happens next?</h6>
+                    {this.keepTrackOfLength()}
                     <SubmissionContainer backendURL={this.props.backendURL} story={this.state.story} submitVote={this.submitVote}/>
                     <StorySocket 
                         backendURL={this.props.backendURL}
@@ -90,6 +117,7 @@ export default class StoryContainer extends Component {
                         updateStory={this.updateStoryFromSocket} 
                         addSubmission={this.AddSubmissionFromSocket}
                         updateAudience={this.updateAudience}
+                        removeSubmission = {this.RemoveSubmissionFromSocket}
                     />
                 </div>                
             : null}

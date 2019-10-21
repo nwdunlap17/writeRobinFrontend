@@ -11,7 +11,10 @@ export default class StorySocket extends PureComponent{
                 // debugger
                 switch (broadcast.message) {
                     case 'submission':
-                        this.props.addSubmission(broadcast.submission)
+                        this.props.addSubmission(broadcast.submission, broadcast.author)
+                    break;
+                    case 'delete submission':
+                        this.props.removeSubmission(broadcast.id)
                     break;
                     case 'audience':
                         this.props.updateAudience(broadcast.count)

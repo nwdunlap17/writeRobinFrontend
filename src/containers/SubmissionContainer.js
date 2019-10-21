@@ -18,8 +18,8 @@ export default class SubmissionContainer extends Component{
 
     addSubmission = event => {
         event.preventDefault()
-        if (this.state.characters > 400){
-            window.alert('Submissions must be within 400 characters.')
+        if (this.state.characters > this.charLimit()){
+            window.alert(`Submissions must be within ${this.charLimit()} characters.`)
             return 
         }
         if (this.state.characters < 20){
@@ -44,24 +44,38 @@ export default class SubmissionContainer extends Component{
     }
 
     renderSubmissionForm = () => {
-        if (!!localStorage.getItem('auth_token') && localStorage.getItem('auth_token') !== 'null'){
+        if (this.props.story.length - this.props.story.current_length > 0 || this.props.story.length === 0){
+            if (!!localStorage.getItem('auth_token') && localStorage.getItem('auth_token') !== 'null'){
             if(this.state.showSubForm == true){
-                return(<form onSubmit={this.addSubmission}>
+                return(<form onSubmit={this.addSubmission} className='submssion-list-item'>
                         <textarea className='text-area' value={this.state.draft} onChange={event => this.setState({draft: event.target.value, characters: event.target.value.length})}/>
-                        <p>{400-this.state.characters}/400</p>
+                        <p className='no-margin' >{this.charLimit()-this.state.characters}/{this.charLimit()}</p>
                         <input type='submit'/>
                        </form>)
             } else {
-                return (<button onClick={() => this.setState({showSubForm:true})}>Write New Submission</button>)
+                return (<button className='submssion-list-item' onClick={() => this.setState({showSubForm:true})}>Write New Submission</button>)
             }
-        } else {return null}
+        } else {
+            return null
+            }
+        } else {
+            return null
+        }
+    }
+
+    charLimit = () => {
+        if (this.props.story.length - this.props.story.current_length === 1){
+            return 600
+        } else{
+            return 400
+        }
     }
 
     render(){
         return (
             <div>
                 {this.renderSubmissionForm()}
-                <ul className='pending-submission-list'>
+                <ul className='non-flush-card-list'>
                     {this.renderPendingSubmissions()}
                 </ul>
             </div>

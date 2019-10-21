@@ -14,7 +14,7 @@ export default class Canon extends PureComponent {
             return(<div className='list-group-item submission' key={`canon${submission.id}`}>
                 <div>{submission.content}</div>
                 <div className='addendum'>
-                    {submission.author} {this.renderVoteButtons(submission)}
+                    <div>{submission.author} {this.renderVoteButtons(submission)}</div>
                 </div>
             
             </div>)
@@ -22,14 +22,20 @@ export default class Canon extends PureComponent {
     }
 
     renderVoteButtons = (submission) => {
-        let plus = <p className='vote-button' onClick={() => this.props.submitVote(submission.id,1)}>+</p>
-        let minus = <p className='vote-button' onClick={() => this.props.submitVote(submission.id,-1)}>-</p>
-        if (submission.vote === 1){
-            plus = <p className='vote-button black' onClick={() => this.props.submitVote(submission.id,0)}>+</p>
-        } else if (submission.vote === -1){
-            minus = <p className='vote-button black' onClick={() => this.props.submitVote(submission.id,0)}>-</p>
-        }
-        return <div className='vote-button'>{plus} {minus}</div>
+        if (!!localStorage.getItem('auth_token') && localStorage.getItem('auth_token') !== 'null'){
+            let plus = <p className='vote-button' onClick={() => this.props.submitVote(submission.id,1)}>+</p>
+            let minus = <p className='vote-button' onClick={() => this.props.submitVote(submission.id,-1)}>-</p>
+            if (submission.vote === 1){
+                plus = <p className='vote-button black' onClick={() => this.props.submitVote(submission.id,0)}>+</p>
+            } else if (submission.vote === -1){
+                minus = <p className='vote-button black' onClick={() => this.props.submitVote(submission.id,0)}>-</p>
+            }
+            return <div className='vote-button'>{plus} {submission.score} {minus}</div>
+        } else {
+            let plus = <p className='vote-button' onClick={() => window.alert('Sign in to vote!')}>+</p>
+            let minus = <p className='vote-button' onClick={() => window.alert('Sign in to vote!')}>-</p>
+            return <div className='vote-button-container'>{plus} {submission.score} {minus}</div>
+        }  
     }
 
     render(){

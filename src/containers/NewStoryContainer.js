@@ -19,6 +19,11 @@ export default class NewStoryContainer extends Component {
             return
         }
 
+        if(this.state.title.length > 50){
+            window.alert('Titles can be no longer than 50 characters.')
+            return
+        }
+
         if(this.state.content.length > 600){
             window.alert('Intro must be less than 600 characters.')
             return
@@ -38,6 +43,7 @@ export default class NewStoryContainer extends Component {
             body: JSON.stringify({
                 story: {
                     title: this.state.title,
+                    length: this.state.length
                 },
                 content: this.state.content
             })

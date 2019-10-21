@@ -20,7 +20,7 @@ export default class HomeContainer extends Component{
 
     renderStoriesList = () => {
         return this.state.stories.map(story => {
-            return <li><StoryCard story={story}/></li>
+            return <li key={`story${story.id}`}><StoryCard story={story} /></li>
         })
     }
 
@@ -29,7 +29,7 @@ export default class HomeContainer extends Component{
             return null
         } 
         if (!this.state.toNewStory){
-            return <button onClick={()=>{this.setState({toNewStory:true})}}>New Story</button>
+            return <button className="btn btn-success" onClick={()=>{this.setState({toNewStory:true})}}>+ New Story</button>
         }
         if (this.state.toNewStory){
             return <Redirect to='/new-story'/>
@@ -42,7 +42,7 @@ export default class HomeContainer extends Component{
             this.state.loaded? 
             <div>
                 {this.renderNewStoryButton()}
-                <ul>
+                <ul className='non-flush-card-list'>
                     {this.renderStoriesList()}
                 </ul>
             </div>
