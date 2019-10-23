@@ -11,7 +11,7 @@ export default class SubmissionView extends Component{
 
     renderDeleteButton = () => {
         let submission = this.props.submission;
-        if (submission.author.toLowerCase() === localStorage.getItem('user').toLowerCase()){
+        if (submission.author.toLowerCase() === localStorage.getItem('user').toLowerCase() || localStorage.getItem('admin') === 'true'){
             return <p className='vote-button' onClick={() => {this.setState({showDeleteButton: true})}}>Delete </p>
         } else {
             return null

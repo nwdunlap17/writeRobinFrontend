@@ -99,12 +99,22 @@ export default class StoryContainer extends Component {
         
     }
 
+
+    listGenreCards = () => {
+        return this.state.story.genres.map(genre => {
+            return <div className='card genre-card-exterior'><div className='story-card-genre-card-interior'><p className='genre-card-text'>{genre.name}</p></div></div>
+        })
+    }
+
     render(){
         return(
         <div>
             {this.state.loaded? 
                 <div>
                     <h3>{this.state.story.title}</h3>
+                    <div className='story-card-top-line'>
+                        {this.listGenreCards()}
+                    </div>
                     <p>{this.state.story.current_length}/{this.state.story.length}</p>
                     <Canon story={this.state.story} submitVote={this.submitVote}/>
                     {/* <VoteButtons/> */}

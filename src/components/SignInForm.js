@@ -32,8 +32,12 @@ class SignInForm extends Component{
         .then(resp => resp.json())
         .then(json => {
             if (!json.error){
+
+                console.log('login json', json)
                 localStorage.setItem('auth_token',json.token)
                 localStorage.setItem('user',json.username)
+                localStorage.setItem('user_id',json.id)
+                localStorage.setItem('admin',json.admin)
                 this.props.updateUserName(this.state.username)
             }else{
                 this.setState({error:true})

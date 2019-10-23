@@ -12,6 +12,8 @@ export default class LogoutButton extends Component {
     handleLogout = () => {
         localStorage.setItem('auth_token', null)
         localStorage.setItem('user', null)
+        localStorage.setItem('user_id', null)
+        localStorage.setItem('admin', null)
         this.setState({redirect: true})
         this.props.updateUserName('null')
     }

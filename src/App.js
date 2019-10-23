@@ -7,6 +7,7 @@ import './App.css';
 import StoryContainer from './containers/StoryContainer';
 import HomeContainer from './containers/HomeContainer';
 import NewStoryContainer from './containers/NewStoryContainer';
+import ProfileContainer from './containers/ProfileContainer';
 
 class App extends Component{
     constructor(props){
@@ -47,6 +48,10 @@ class App extends Component{
 
                     <Route path='/new-story'>
                         <NewStoryContainer backendURL={this.props.backendURL}/>
+                    </Route>
+
+                    <Route path='/profile/'>
+                        <ProfileContainer updateUserName={this.updateUserName} backendURL={this.props.backendURL}/>
                     </Route>
 
 

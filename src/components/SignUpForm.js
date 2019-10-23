@@ -43,6 +43,8 @@ class SignUpForm extends Component{
             if (json.message === 'success'){
                 localStorage.setItem('auth_token',json.token)
                 localStorage.setItem('user',json.username)
+                localStorage.setItem('user_id',json.id)
+                localStorage.setItem('admin',json.admin)
                 this.props.updateUserName(this.state.username)
                 this.setState({redirect: true})
             }

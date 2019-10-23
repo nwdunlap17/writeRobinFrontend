@@ -34,15 +34,14 @@
 }
 
 #Page-Content {
-  /* flex-shrink: 0; */
-  max-width: 90%;
-  max-width: 600px;
-  min-width: 60vw;
+  width: 100%;
+  max-width: 700px;
 }
 
 .submission {
   background-color: #F8F8F8;
   padding-bottom: 0;
+  white-space: pre-wrap;
 }
 .addendum {
   /* background-color: #F8F8F8; */
@@ -103,4 +102,88 @@
   background-color: orangered;
   display: flex;
   justify-content: space-between;
+}
+
+.story-card-genre-card-interior{
+  display: inline;
+  white-space: nowrap;
+  margin: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.genre-card-interior{
+  display: inline;
+  white-space: nowrap;
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.genre-card-cancel-button{
+  display: inline;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.genre-card-text{
+  display: inline;
+  white-space: nowrap;
+}
+.genre-card-exterior{
+  display: inline;
+  margin: 5px;
+}
+
+.story-card-top-line{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.story-card-title{
+  margin-left: 10px;
+  margin-top: 10px;
+  display: inline;
+  white-space: nowrap;
+}
+
+.story-card-genres{
+  white-space: normal;
+  white-space: normal;
+}
+
+.profileButton{
+  cursor: pointer;
+}
+
+.name-card-interior{
+  display: inline;
+  white-space: nowrap;
+  margin: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.name-card-text{
+  display: inline;
+  white-space: nowrap;
+  padding-right: 5px;
+}
+
+.name-card-button{
+    color: #AAAAAA;
+    cursor: pointer;
+    display: inline;
+}
+
+.name-card{
+  margin: 10px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.name-card-list{
+  list-style: none;
+  padding-left: 0px;;
 }

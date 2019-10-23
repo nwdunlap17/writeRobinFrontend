@@ -26,6 +26,12 @@ export default class SubmissionContainer extends Component{
             window.alert('Submissions must have more than 20 characters.')
             return 
         }
+
+        if (!'-".!?)'.includes(this.state.draft[this.state.draft.length-1]) || !this.state.draft.includes(' ')){
+            window.alert("Your submission doesn't look like a sentence. Please check your grammer!")
+            return 
+        }
+        
         fetch(this.props.backendURL+'/submissions', {
             method: 'POST',
             headers: {
