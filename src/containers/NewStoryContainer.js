@@ -6,13 +6,14 @@ export default class NewStoryContainer extends Component {
     constructor(props){
         super(props)
         this.state = {
-            title: 'Title',
+            title: '',
             content: '',
             length: 20,
             redirect: null,
             genres: [],
             storyGenres: [],
-            private: false
+            private: false,
+            invites: []
         }
         this.getGenreList()
     }
@@ -28,6 +29,11 @@ export default class NewStoryContainer extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
+        console.log(this.state.private)
+
+        
+        console.log(this.state.invites)
+        
         if(this.state.title == 'Title' || this.state.title.length < 2){
             window.alert('Plese give the story a title.')
             return
@@ -67,9 +73,11 @@ export default class NewStoryContainer extends Component {
                 story: {
                     title: this.state.title,
                     length: this.state.length,
-                    genres: genreIDs
+                    genres: genreIDs,
+                    public: !this.state.private
                 },
-                content: this.state.content
+                content: this.state.content,
+                invites: this.state.invites 
             })
         })
         .then(res => res.json())
@@ -120,13 +128,16 @@ export default class NewStoryContainer extends Component {
         })
     }
 
+    updateInvites = invites => {
+        this.setState({invites: invites})
+    }
+
     render(){
         return( 
             <div>
                 <form onSubmit={this.handleSubmit}>
-
                     <div>
-                        <input type='text' value={this.state.title} onChange={event => this.setState({title: event.target.value})}/>
+                        <input type='text' value={this.state.title} placeholder='Title' onChange={event => this.setState({title: event.target.value})}/>
                         
                         <label>Max Length</label>
                         <input type='number' value={this.state.length} onChange={event => this.setState({length: event.target.value})}/>
@@ -141,20 +152,25 @@ export default class NewStoryContainer extends Component {
                     
                     <p>{600-this.state.content.length}/600</p>
                     <textarea className='text-area' value={this.state.content} onChange={event => this.setState({content: event.target.value})}/>
-                    <input type='submit'/>
+                    <input type='submit' value='Create Story'/>
                 </form>
 
-                <div>
+                <div className='story-public-form'>
                     <label>Private Story? </label>
-                    <input type="checkbox" value="" onChange={event => {this.setState(prev => {return {private: !prev.private}})}}></input>
+                    <select type="checkbox" onChange={event => {console.log(event.target.value); this.setState({private: event.target.value})}}>
+                        <option value='false'>No</option>
+                        <option value='true'>Yes</option>
+                    </select>
                 </div>
 
-                {this.state.private?
-                <FriendSearch backendURL={this.props.backendURL}/>
+                {this.state.private === 'true'?
+                    <div>
+                            <p>Invites</p>
+                            <FriendSearch backendURL={this.props.backendURL} updateInvites={this.updateInvites}/>
+                    </div>
                 :
-                null
+                    null
                 }
-
 
                 {this.state.redirect? <Redirect to={`/stories/${this.state.redirect}`}/> : null}
             </div>

@@ -52,19 +52,23 @@ export default class FriendSearch extends Component {
         })
     }
 
-    addResult = friend => {
-        this.setState(prevState => {return ({selected: [...prevState.selected,friend]})})
+    async addResult (afriend ) {
+        let foo = await this.setState(prevState => {return ({selected: [...prevState.selected,afriend]})})
+        this.props.updateInvites(this.state.selected.map(friend=>{return friend.id}))
     }
 
-    removeResult = friendID => {
-
-        this.setState(prevState => {
+    async removeResult (friendID){
+        let foo = await this.setState(prevState => {
             let stillSelected = prevState.selected.filter(friend => {
                 return friend.id !== friendID
             })
             return {selected: stillSelected}
         })
+        this.props.updateInvites(this.state.selected.map(friend=>{return friend.id}))
     }
+
+    
+
 
     renderSelected = () => {
         let selectedResults = this.state.selected.map(friend => {

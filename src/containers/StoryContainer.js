@@ -10,7 +10,8 @@ export default class StoryContainer extends Component {
         super(props)
         this.state = {
             story: null,
-            loaded: false
+            loaded: false,
+            rejection: false,
         }
         this.getInitialData()
     }
@@ -29,6 +30,10 @@ export default class StoryContainer extends Component {
         })
         .then(res => res.json())
         .then(json => {
+            if (!!json.message && json.message == 'denied'){
+                this.setState({rejection: true})
+                return
+            }
             console.log('story',json);
             this.setState({story: json, loaded:true});})
         // .then(() => console.log('s2',this.state.story))
@@ -109,7 +114,7 @@ export default class StoryContainer extends Component {
     render(){
         return(
         <div>
-            {this.state.loaded? 
+            {(this.state.loaded && !this.state.rejection)? 
                 <div>
                     <h3>{this.state.story.title}</h3>
                     <div className='story-card-top-line'>
@@ -130,7 +135,12 @@ export default class StoryContainer extends Component {
                         removeSubmission = {this.RemoveSubmissionFromSocket}
                     />
                 </div>                
-            : null}
+            : 
+                this.state.loaded? 
+                    <p>You don't have access to this story!</p>
+                :
+                    <p>Loading Story...</p>
+            }
         </div>)
     }
 }
