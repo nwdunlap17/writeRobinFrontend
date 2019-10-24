@@ -70,7 +70,7 @@ class SignUpForm extends Component{
                 <input type='password' value={this.state.password} onChange={this.updatePassword}></input>
                 <p>Confirm Password:</p>
                 <input type='password' value={this.state.password2} onChange={this.updatePassword2}></input>
-                <button type='submit'>Sign Up</button>
+                <button className='btn btn-light' type='submit'>Sign Up</button>
             </form>
     )   }
 }

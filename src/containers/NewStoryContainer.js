@@ -165,8 +165,8 @@ export default class NewStoryContainer extends Component {
 
                 {this.state.private === 'true'?
                     <div>
-                            <p>Invites</p>
-                            <FriendSearch backendURL={this.props.backendURL} updateInvites={this.updateInvites}/>
+                            <p>Invite Friends</p>
+                            <FriendSearch invited={[]} backendURL={this.props.backendURL} updateInvites={this.updateInvites}/>
                     </div>
                 :
                     null

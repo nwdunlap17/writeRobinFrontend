@@ -8,6 +8,7 @@ export default class FriendSearch extends Component {
             results: [],
             selected: []
         }
+        
     }
 
     sendSearch = (term) => {
@@ -36,7 +37,7 @@ export default class FriendSearch extends Component {
         })
 
         let displayResults = this.state.results.filter(friend => {
-            if (selectedResults.includes(friend.id)){
+            if (selectedResults.includes(friend.id) || this.props.invited.includes(friend.id)){
                 return false
             } else {return true}
         })
@@ -71,7 +72,11 @@ export default class FriendSearch extends Component {
 
 
     renderSelected = () => {
-        let selectedResults = this.state.selected.map(friend => {
+        let selectedResults = this.state.selected.filter(friend => {
+            return !this.props.invited.includes(friend.id)
+        })
+
+        selectedResults = selectedResults.map(friend => {
             return(<li className='card inline margin10'>
                 <div className='name-card-interior'>
                 <p className='name-card-button' onClick={()=>{this.removeResult(friend.id)}}>X </p>

@@ -61,7 +61,7 @@ class SignInForm extends Component{
                 <input type='text' value={this.state.username} onChange={this.updateUsername}></input>
                 <p>Password:</p>
                 <input type='password' value={this.state.password} onChange={this.updatePassword}></input>
-                <button type='submit'>Login</button>
+                <button className='btn btn-light' type='submit'>Login</button>
             </form>
             {redirect}
             </div>

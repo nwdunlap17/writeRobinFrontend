@@ -17,7 +17,7 @@ export default class SearchBar extends Component{
         return (
         <form>
             <input type='text' value={this.state.term} onChange={event=>{this.setState({term: event.target.value})}}/>
-            <button onClick={this.buttonClick}>Search</button>
+            <button className='btn btn-light' onClick={this.buttonClick}>Search</button>
         </form>
         )
     }

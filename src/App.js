@@ -61,10 +61,6 @@ class App extends Component{
 
 
                     
-                    {/* <p>Story of ID: {this.state.story.id}</p>
-                    <p>{this.state.story.content}</p>
-                    <input type='text' value={this.state.addend} onChange={event=>{this.setState({addend: event.target.value})}}/>
-                    <button onClick={this.appendButton}>Add</button> */}
                 </div>
                 </div>
             </Router>

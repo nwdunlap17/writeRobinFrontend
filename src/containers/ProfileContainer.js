@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import LogoutButton from '../components/LogoutButton'
+import {Redirect} from 'react-router-dom'
 
 export default class ProfileContainer extends Component {
     constructor(props){
@@ -10,14 +11,34 @@ export default class ProfileContainer extends Component {
             friends: [],
             isFriends: null,
             loaded: false,
-            addClicked: false
+            addClicked: false,
+            redirect: false
         }
         this.getUserData()
+    }
+
+    setRedirect = (newPath) => {
+        this.setState({redirect: newPath})
+    }
+
+    checkRedirect = () => {
+        if (this.state.redirect !== false){
+            if (window.location.pathname === this.state.redirect){
+                this.setRedirect(false)
+                return null
+            } else {
+                return <Redirect to={this.state.redirect}/>
+            }
+        }
     }
 
     getUserData(){
         let path = window.location.pathname
         let userID = path.split('profile/')[1]
+        if (parseInt(userID) === NaN){
+            this.setRedirect('/home')
+            return
+        }
         let token = 'null'
         if (!!localStorage.getItem('auth_token') && localStorage.getItem('auth_token')!== 'null'){token = localStorage.getItem('auth_token')}
 
@@ -53,7 +74,7 @@ export default class ProfileContainer extends Component {
     renderMyPage = () => {
         return(
             <div>
-                <LogoutButton updateUserName={this.props.updateUserName}/>
+                <LogoutButton redirect={this.setRedirect} updateUserName={this.props.updateUserName}/>
             </div>
         )
     }
@@ -64,12 +85,12 @@ export default class ProfileContainer extends Component {
                 <p>Their Page</p>
                 {(!!localStorage.getItem('user') && localStorage.getItem('user') !== 'null')?
                     (this.state.isFriends? 
-                        <button onClick={this.removeFriend}>Unfriend</button>
+                        <button className='btn btn-danger' onClick={this.removeFriend}>Unfriend</button>
                     :
                         (this.state.addClicked == false?
-                            <button onClick={this.addFriend}>Add Friend</button>
+                            <button className='btn btn-success' onClick={this.addFriend}>Add Friend</button>
                         :
-                            <button>Pending</button>))
+                            <button className='btn btn-light'>Pending</button>))
                 :
                     null
                 }
@@ -107,6 +128,7 @@ export default class ProfileContainer extends Component {
         if (this.state.loaded){
             return(
                 <div>
+                    {this.checkRedirect()}
                     <p>Future Site of Profile Page</p>
                     <h3>{this.state.username}</h3>
                     {this.renderWhosePage()}
@@ -115,6 +137,7 @@ export default class ProfileContainer extends Component {
         }
         return(
         <div>
+            {this.checkRedirect()}
             <p>Loading...</p>
         </div>)
     }
