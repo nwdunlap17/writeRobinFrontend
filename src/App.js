@@ -18,6 +18,15 @@ class App extends Component{
         }
     }
 
+    componentDidMount(){
+        if (localStorage.getItem('auth_token') === null){
+            localStorage.setItem('auth_token', null)
+            localStorage.setItem('user', null)
+            localStorage.setItem('user_id', null)
+            localStorage.setItem('admin', null)
+        }
+    }
+
     updateUserName = (name) => {
         this.setState( { username: name})
     }
