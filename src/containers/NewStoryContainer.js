@@ -53,10 +53,10 @@ export default class NewStoryContainer extends Component {
             return
         }
         
-        if (!'-".!?)'.includes(this.state.content[this.state.content.length-1]) || !this.state.content.includes(' ')){
-            window.alert("Your submission doesn't look like a sentence. Please check your grammer!")
-            return 
-        }
+        // if (!'-".!?)'.includes(this.state.content[this.state.content.length-1]) || !this.state.content.includes(' ')){
+        //     window.alert("Your submission doesn't look like a sentence. Please check your grammer!")
+        //     return 
+        // }
 
         let genreIDs = this.state.storyGenres.map(genre => {
             return genre.id
