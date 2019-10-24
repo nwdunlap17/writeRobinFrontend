@@ -9,7 +9,8 @@ export default class ProfileContainer extends Component {
             id: -1,
             friends: [],
             isFriends: null,
-            loaded: false
+            loaded: false,
+            addClicked: false
         }
         this.getUserData()
     }
@@ -17,11 +18,14 @@ export default class ProfileContainer extends Component {
     getUserData(){
         let path = window.location.pathname
         let userID = path.split('profile/')[1]
+        let token = 'null'
+        if (!!localStorage.getItem('auth_token') && localStorage.getItem('auth_token')!== 'null'){token = localStorage.getItem('auth_token')}
+
         console.log('url', `${this.props.backendURL}/users/${userID}/profile`)
         fetch(`${this.props.backendURL}/users/${userID}/profile`,{
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
@@ -38,7 +42,8 @@ export default class ProfileContainer extends Component {
     }
 
     renderWhosePage = () => {
-        if (this.state.username.toLowerCase() == localStorage.getItem('user').toLowerCase()){
+        console.log('user ', this.state.username)
+        if (!!localStorage.getItem('user') && this.state.username.toLowerCase() == localStorage.getItem('user').toLowerCase()){
             return this.renderMyPage()
         } else {
             return this.renderTheirPage()
@@ -57,10 +62,16 @@ export default class ProfileContainer extends Component {
         return(
             <div>
                 <p>Their Page</p>
-                {this.state.isFriends? 
-                    <button onClick={this.removeFriend}>Unfriend</button>
+                {(!!localStorage.getItem('user') && localStorage.getItem('user') !== 'null')?
+                    (this.state.isFriends? 
+                        <button onClick={this.removeFriend}>Unfriend</button>
+                    :
+                        (this.state.addClicked == false?
+                            <button onClick={this.addFriend}>Add Friend</button>
+                        :
+                            <button>Pending</button>))
                 :
-                    <button onClick={this.addFriend}>Add Friend</button>
+                    null
                 }
             </div>
         )
@@ -76,6 +87,7 @@ export default class ProfileContainer extends Component {
                 'Accept': 'application/json'
             }
         })
+        this.setState({addClicked: true})
     }
 
     removeFriend = () => {
@@ -87,6 +99,7 @@ export default class ProfileContainer extends Component {
                 'Accept': 'application/json'
             }
         })
+        this.setState({isFriends: false})
     }
 
 

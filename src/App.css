@@ -86,7 +86,14 @@
 
 .inline {
   display: inline;
-  margin: 10px
+}
+
+.margin10 {
+    margin: 10px
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .story-list-item{
@@ -169,6 +176,7 @@
   display: inline;
   white-space: nowrap;
   padding-right: 5px;
+  margin-bottom: 0px;
 }
 
 .name-card-button{
@@ -191,3 +199,4 @@
 .story-public-form{
   margin-top:15px;
 }
+

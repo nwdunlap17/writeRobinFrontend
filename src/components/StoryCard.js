@@ -22,8 +22,8 @@ export default class StoryCard extends Component{
                 {this.listGenreCards()}
             </div>
             <div>
-                <p className='inline'>Score: {this.props.story.score}</p>
-                <p className='inline'>Length: {this.props.story.current_length}/{this.props.story.length}</p>
+                <p className='inline margin10'>Score: {this.props.story.score}</p>
+                <p className='inline margin10'>Length: {this.props.story.current_length}/{this.props.story.length}</p>
             </div>
             {this.state.redirect? <Redirect to={`/stories/${this.props.story.id}`}/> : null}
         </div>

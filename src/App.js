@@ -8,6 +8,7 @@ import StoryContainer from './containers/StoryContainer';
 import HomeContainer from './containers/HomeContainer';
 import NewStoryContainer from './containers/NewStoryContainer';
 import ProfileContainer from './containers/ProfileContainer';
+import SearchContainer from './containers/SearchContainer';
 
 class App extends Component{
     constructor(props){
@@ -52,6 +53,10 @@ class App extends Component{
 
                     <Route path='/profile/'>
                         <ProfileContainer updateUserName={this.updateUserName} backendURL={this.props.backendURL}/>
+                    </Route>
+
+                    <Route path='/search'>
+                        <SearchContainer backendURL={this.props.backendURL}/>
                     </Route>
 
 

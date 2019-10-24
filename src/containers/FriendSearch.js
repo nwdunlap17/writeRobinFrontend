@@ -52,7 +52,7 @@ export default class FriendSearch extends Component {
         })
     }
 
-    async addResult (afriend ) {
+    async addResult (afriend) {
         let foo = await this.setState(prevState => {return ({selected: [...prevState.selected,afriend]})})
         this.props.updateInvites(this.state.selected.map(friend=>{return friend.id}))
     }
@@ -72,7 +72,7 @@ export default class FriendSearch extends Component {
 
     renderSelected = () => {
         let selectedResults = this.state.selected.map(friend => {
-            return(<li className='card inline'>
+            return(<li className='card inline margin10'>
                 <div className='name-card-interior'>
                 <p className='name-card-button' onClick={()=>{this.removeResult(friend.id)}}>X </p>
                 <p className='name-card-text'>{friend.username}</p>

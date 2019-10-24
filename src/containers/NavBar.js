@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import HomeButton from '../components/HomeButton'
 import LoginButton from '../components/LoginButton'
 import ProfileButton from '../components/ProfileButton'
-import LogoutButton from '../components/LogoutButton'
+import SearchButton from '../components/SearchButton'
 
 export default class NavBar extends Component {
 
@@ -18,7 +18,8 @@ export default class NavBar extends Component {
         return(
         <div className='navbar'>
             <HomeButton/>
-
+            
+            <SearchButton/>
             {this.renderLoginOrProfileButton()}
             
             {/* <LogoutButton updateUserName={this.props.updateUserName}/> */}

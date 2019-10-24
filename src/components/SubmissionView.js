@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 
 export default class SubmissionView extends Component{
 
     constructor(props){
         super(props)
         this.state = ({
-            showDeleteButton: false
+            showDeleteButton: false,
+            profileRedirect: false
         })
     }
 
@@ -23,9 +25,9 @@ export default class SubmissionView extends Component{
         return(
         <div className='delete-confirmation card'>
             <div className='delete-confirmation'>
-                <p className='inline'>Really Delete This Submission?</p>
-                <p className='inline' onClick={this.deleteSub} >Yes</p>
-                <p className='inline vote-button' onClick={()=>{this.setState({showDeleteButton: false})}} >No</p>
+                <p className='inline margin10'>Really Delete This Submission?</p>
+                <p className='inline margin10' onClick={this.deleteSub} >Yes</p>
+                <p className='inline margin10 vote-button' onClick={()=>{this.setState({showDeleteButton: false})}} >No</p>
             </div>
         </div>
         )
@@ -65,17 +67,26 @@ export default class SubmissionView extends Component{
         })
     }
 
+    profileRedirect = () => {
+        if (this.state.profileRedirect){
+            return <Redirect to={`/profile/${this.props.submission.user_id}`}/>
+        } else{
+            return null
+        }
+    }
+
     render(){
         return (
             <li className='submssion-list-item'>
                 <div className='card submission list-group-item'>
                     <div>{this.props.submission.content}</div>
                     <div className='addendum'>
-                        <div>{this.props.submission.author} {this.renderVoteButtons(this.props.submission)}</div>
+                        <div><p className='inline clickable' onClick={() => this.setState({profileRedirect: true})}>{this.props.submission.author}</p> {this.renderVoteButtons(this.props.submission)}</div>
                         <div>{this.renderDeleteButton()}</div>
                     </div>
                 </div>
                 {this.deleteConfirmation()}
+                {this.profileRedirect()}
             </li>
         )
     }

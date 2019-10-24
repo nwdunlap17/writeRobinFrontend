@@ -1,6 +1,11 @@
 import React, {PureComponent} from 'react'
+import {Redirect} from 'react-router-dom'
 
 export default class Canon extends PureComponent {
+    constructor(props){
+        super(props)
+        this.state = {redirect: null}
+    }
 
     renderCanonSubmissions = () => {
         let submissions = this.props.story.submissions.filter( submission => {
@@ -14,7 +19,7 @@ export default class Canon extends PureComponent {
             return(<div className='list-group-item submission' key={`canon${submission.id}`}>
                 <div>{submission.content}</div>
                 <div className='addendum'>
-                    <div>{submission.author} {this.renderVoteButtons(submission)}</div>
+                    <div><p className='inline clickable' onClick={() => this.setState({redirect: `/profile/${submission.user_id}`})}>{submission.author}</p> {this.renderVoteButtons(submission)}</div>
                 </div>
             
             </div>)
@@ -44,6 +49,11 @@ export default class Canon extends PureComponent {
                 <ul className='list-group list-group-flush'>
                     {this.renderCanonSubmissions()}
                 </ul>
+                {!!this.state.redirect?
+                    <Redirect to={this.state.redirect}/>
+                    :
+                    null
+                }
             </div>
         )
     }

@@ -121,7 +121,7 @@ export default class NewStoryContainer extends Component {
 
     listStoryGenres = () => {
         return this.state.storyGenres.map(genre => {
-            return <div className='card inline' key={`story genre ${genre.id}`}><div className='genre-card-interior'>
+            return <div className='card inline margin10' key={`story genre ${genre.id}`}><div className='genre-card-interior'>
                         <p className='genre-card-cancel-button' value={genre.id} onClick={this.removeStoryGenre}>X </p>
                         <p className='genre-card-text'>{genre.name}</p>
                     </div></div>

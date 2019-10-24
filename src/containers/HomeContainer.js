@@ -13,7 +13,18 @@ export default class HomeContainer extends Component{
     }
 
     componentDidMount(){
-        fetch(`${this.props.backendURL}/home/stories`)
+        let token = 'null'
+        if(!!localStorage.getItem('auth_token')){
+            token = localStorage.getItem('auth_token')
+        }
+        fetch(`${this.props.backendURL}/home/stories`, {
+            method: 'GET',
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
         .then(res => res.json())
         .then(json => this.setState({stories: json, loaded: true}))
     } 
