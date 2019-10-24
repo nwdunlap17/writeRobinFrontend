@@ -57,8 +57,17 @@
 
 .vote-button-container {
   display: inline;
+  font-size: 100%;
 }
 .vote-button {
+  display: inline;
+  min-width: 10px;
+  cursor: pointer;
+  font-size: 150%;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.addendum-button {
   display: inline;
   min-width: 10px;
   cursor: pointer;

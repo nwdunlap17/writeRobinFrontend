@@ -35,7 +35,7 @@ export default class Canon extends PureComponent {
             } else if (submission.vote === -1){
                 minus = <p className='vote-button black' onClick={() => this.props.submitVote(submission.id,0)}>-</p>
             }
-            return <div className='vote-button'>{plus} {submission.score} {minus}</div>
+            return <div className='vote-button-container'>{plus} {submission.score} {minus}</div>
         } else {
             let plus = <p className='vote-button' onClick={() => window.alert('Sign in to vote!')}>+</p>
             let minus = <p className='vote-button' onClick={() => window.alert('Sign in to vote!')}>-</p>

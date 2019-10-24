@@ -46,7 +46,8 @@ export default class SubmissionContainer extends Component{
                 }
             })
         })
-        .then(()=>{this.setState({draft: ''})})
+        .then(()=>{this.setState({draft: '', characters: 0 })})
+        
     }
 
     renderSubmissionForm = () => {
