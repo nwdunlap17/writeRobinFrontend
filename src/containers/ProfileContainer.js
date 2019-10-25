@@ -82,7 +82,6 @@ export default class ProfileContainer extends Component {
     renderTheirPage = () => {
         return(
             <div>
-                <p>Their Page</p>
                 {(!!localStorage.getItem('user') && localStorage.getItem('user') !== 'null')?
                     (this.state.isFriends? 
                         <button className='btn btn-danger' onClick={this.removeFriend}>Unfriend</button>
@@ -129,9 +128,9 @@ export default class ProfileContainer extends Component {
             return(
                 <div>
                     {this.checkRedirect()}
-                    <p>Future Site of Profile Page</p>
                     <h3>{this.state.username}</h3>
                     {this.renderWhosePage()}
+                    <p>Future Site of Profile Page</p>
                 </div>
             )
         }
