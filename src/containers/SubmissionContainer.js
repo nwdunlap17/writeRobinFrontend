@@ -57,7 +57,7 @@ export default class SubmissionContainer extends Component{
                 return(<form onSubmit={this.addSubmission} className='submssion-list-item'>
                         <textarea className='text-area' value={this.state.draft} onChange={event => this.setState({draft: event.target.value, characters: event.target.value.length})}/>
                         <p className='no-margin' >{this.charLimit()-this.state.characters}/{this.charLimit()}</p>
-                        <input type='submit' className='btn btn-success'/>
+                        <button type='submit' className='btn btn-success'>Add Submission</button>
                        </form>)
             } else {
                 return (<button className='btn btn-light submssion-list-item' onClick={() => this.setState({showSubForm:true})}>Write New Submission</button>)
