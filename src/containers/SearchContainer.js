@@ -92,7 +92,7 @@ export default class SearchContainer extends Component {
 
 
     checkboxForm = () => {
-        return (<div>
+        return (<div className='center'>
                     <div className="radio">
                     <label>
                         <input class="form-check-input" type="radio" checked={this.state.storyCheckBox} onChange={(e) => this.setState({storyCheckBox: e.target.checked, userCheckBox: !e.target.checked, category: 'story'})} />
