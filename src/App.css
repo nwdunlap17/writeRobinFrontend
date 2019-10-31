@@ -217,3 +217,8 @@
 .center{
   margin-left: 30px;
 }
+
+.horizontal-contents{
+  display: flex;
+  flex-direction: row;
+}

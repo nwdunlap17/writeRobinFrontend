@@ -10,6 +10,7 @@ export default class ProfileContainer extends Component {
             id: -1,
             friends: [],
             isFriends: null,
+            isFollowing: null,
             loaded: false,
             addClicked: false,
             redirect: false
@@ -55,9 +56,11 @@ export default class ProfileContainer extends Component {
         .then(json => {
             console.log('profile json', json)
             if (!!json.friends){
-                this.setState({username: json.username, id: json.id,friends: json.friends, loaded: true})
+                //My Profile
+                this.setState({username: json.username, id: json.id, friends: json.friends, loaded: true})
             }   else {
-                this.setState({username: json.username, id: json.id,isFriends: json.friended, loaded: true})
+                //Their Profile
+                this.setState({username: json.username, id: json.id, isFriends: json.friended, isFollowing: json.following , loaded: true})
             }
         })
     }
@@ -83,13 +86,21 @@ export default class ProfileContainer extends Component {
         return(
             <div>
                 {(!!localStorage.getItem('user') && localStorage.getItem('user') !== 'null')?
-                    (this.state.isFriends? 
+                    <div>
+                    {(this.state.isFriends? 
                         <button className='btn btn-danger' onClick={this.removeFriend}>Unfriend</button>
                     :
                         (this.state.addClicked == false?
                             <button className='btn btn-success' onClick={this.addFriend}>Add Friend</button>
                         :
-                            <button className='btn btn-light'>Pending</button>))
+                            <button className='btn btn-light'>Pending</button>))}
+                    {(this.state.isFollowing?
+                        <button className='btn btn-danger' onClick={this.unfollow}>Unfollow</button>
+                    :
+                        <button className='btn btn-success' onClick={this.follow}>Follow</button>
+                    
+                    )}
+                    </div>
                 :
                     null
                 }
@@ -120,6 +131,28 @@ export default class ProfileContainer extends Component {
             }
         })
         this.setState({isFriends: false})
+    }
+    follow = () => {
+        fetch(`${this.props.backendURL}/users/${this.state.id}/follow`,{
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        this.setState({isFollowing: true})
+    }
+    unfollow = () => {
+        fetch(`${this.props.backendURL}/users/${this.state.id}/unfollow`,{
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        this.setState({isFollowing: false})
     }
 
 

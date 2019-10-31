@@ -9,6 +9,7 @@ import HomeContainer from './containers/HomeContainer';
 import NewStoryContainer from './containers/NewStoryContainer';
 import ProfileContainer from './containers/ProfileContainer';
 import SearchContainer from './containers/SearchContainer';
+import MessagesContainer from './containers/MessagesContainer'
 
 class App extends Component{
     constructor(props){
@@ -66,6 +67,10 @@ class App extends Component{
 
                     <Route path='/search'>
                         <SearchContainer backendURL={this.props.backendURL}/>
+                    </Route>
+
+                    <Route path='/messages'>
+                        <MessagesContainer backendURL={this.props.backendURL}/>
                     </Route>
 
 

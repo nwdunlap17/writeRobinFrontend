@@ -152,7 +152,7 @@ export default class NewStoryContainer extends Component {
                     
                     <p>{600-this.state.content.length}/600</p>
                     <textarea className='text-area' value={this.state.content} onChange={event => this.setState({content: event.target.value})}/>
-                    <input type='submit' value='Create Story'/>
+                    <input className='btn btn-success' type='submit' value='Create Story'/>
                 </form>
 
                 <div className='story-public-form'>
