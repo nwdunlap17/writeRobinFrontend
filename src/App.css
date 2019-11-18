@@ -23,7 +23,8 @@
 
 .navbar {
   background-color: steelblue;
-
+  display: flex;
+  justify-content: space-between;
 }
 
 #Page-Body {
@@ -53,6 +54,30 @@
   padding-bottom: 0;
   text-align: right;
   white-space: nowrap;
+}
+.message-card{
+  margin-bottom: 10px;;
+}
+
+.message-content{
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+.message-addendum{
+  display: flex;
+  flex-direction: row-reverse;
+  
+  justify-content: space-between;
+  color: #AAAAAA;
+  padding-bottom: 0;
+  text-align: right;
+  white-space: nowrap;
+  margin-bottom: 0;
+  margin-right: 10px;;
+}
+.message-card-interior{
+  display: flex;
+  justify-content: space-between;
 }
 
 .vote-button-container {
@@ -171,6 +196,13 @@
 
 .profileButton{
   cursor: pointer;
+  margin-bottom: 0px;
+}
+
+.messagesButton{
+  cursor: pointer;
+  margin-right: 20px;
+  margin-bottom: 0;
 }
 
 .name-card-interior{

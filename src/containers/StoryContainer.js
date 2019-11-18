@@ -4,6 +4,7 @@ import SubmissionContainer from './SubmissionContainer'
 import StorySocket from '../components/StorySocket'
 import FriendSearch from './FriendSearch'
 import {Redirect} from 'react-router-dom'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 
 //Takes in storyID as a prop
@@ -219,7 +220,7 @@ export default class StoryContainer extends Component {
                 this.state.loaded? 
                     <p>You don't have access to this story!</p>
                 :
-                    <p>Loading Story...</p>
+                    <LoadingIndicator/>
             }
         </div>)
     }

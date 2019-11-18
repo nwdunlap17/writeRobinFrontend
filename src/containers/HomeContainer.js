@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import StoryCard from '../components/StoryCard'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 export default class HomeContainer extends Component{
     constructor(props){
@@ -57,7 +58,7 @@ export default class HomeContainer extends Component{
                     {this.renderStoriesList()}
                 </ul>
             </div>
-            : <p>Loading Stories</p> 
+            : <LoadingIndicator/> 
 
         )
     }

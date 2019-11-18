@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import MessageCard from '../components/MessageCard'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 export default class MessagesContainer extends Component {
     constructor(props){
@@ -44,7 +45,7 @@ export default class MessagesContainer extends Component {
                 :
                 <p>Lo, a message!</p>
             :
-            <p>Loading</p>
+            <LoadingIndicator/> 
         )
     }
 }

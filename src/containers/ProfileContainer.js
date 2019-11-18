@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import LogoutButton from '../components/LogoutButton'
 import {Redirect} from 'react-router-dom'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 export default class ProfileContainer extends Component {
     constructor(props){
@@ -170,7 +171,7 @@ export default class ProfileContainer extends Component {
         return(
         <div>
             {this.checkRedirect()}
-            <p>Loading...</p>
+            <LoadingIndicator/>
         </div>)
     }
 }
