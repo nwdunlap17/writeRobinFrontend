@@ -28,3 +28,8 @@ Built with:
 * Follow and friend other users
 
 ## Screenshots
+
+[List of Stories](https://raw.githubusercontent.com/nwdunlap17/writeRobinFrontend/master/images/stories.PNG)
+
+
+[Giant Story](https://raw.githubusercontent.com/nwdunlap17/writeRobinFrontend/master/images/giant.PNG)
