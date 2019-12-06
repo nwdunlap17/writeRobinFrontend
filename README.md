@@ -29,7 +29,7 @@ Built with:
 
 ## Screenshots
 
-[List of Stories](https://raw.githubusercontent.com/nwdunlap17/writeRobinFrontend/master/images/stories.PNG)
+![List of Stories](https://raw.githubusercontent.com/nwdunlap17/writeRobinFrontend/master/images/stories.PNG)
 
 
-[Giant Story](https://raw.githubusercontent.com/nwdunlap17/writeRobinFrontend/master/images/giant.PNG)
+![Giant Story](https://raw.githubusercontent.com/nwdunlap17/writeRobinFrontend/master/images/giant.PNG)
