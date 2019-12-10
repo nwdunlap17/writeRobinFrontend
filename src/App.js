@@ -20,6 +20,7 @@ class App extends Component{
     }
 
     componentDidMount(){
+        fetch(`${this.props.backendURL}`)
         if (localStorage.getItem('auth_token') === null){
             localStorage.setItem('auth_token', null)
             localStorage.setItem('user', null)
