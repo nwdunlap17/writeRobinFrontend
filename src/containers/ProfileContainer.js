@@ -14,7 +14,8 @@ export default class ProfileContainer extends Component {
             isFollowing: null,
             loaded: false,
             addClicked: false,
-            redirect: false
+            redirect: false,
+            numFollowers: 0
         }
         this.getUserData()
     }
@@ -58,10 +59,10 @@ export default class ProfileContainer extends Component {
             console.log('profile json', json)
             if (!!json.friends){
                 //My Profile
-                this.setState({username: json.username, id: json.id, friends: json.friends, loaded: true})
+                this.setState({username: json.username, id: json.id, friends: json.friends, loaded: true, numFollowers: json.numFollowers})
             }   else {
                 //Their Profile
-                this.setState({username: json.username, id: json.id, isFriends: json.friended, isFollowing: json.following , loaded: true})
+                this.setState({username: json.username, id: json.id, isFriends: json.friended, isFollowing: json.following , loaded: true, numFollowers: json.numFollowers})
             }
         })
     }
@@ -142,7 +143,7 @@ export default class ProfileContainer extends Component {
                 'Accept': 'application/json'
             }
         })
-        this.setState({isFollowing: true})
+        this.setState({isFollowing: true, numFollowers: this.state.numFollowers+1})
     }
     unfollow = () => {
         fetch(`${this.props.backendURL}/users/${this.state.id}/unfollow`,{
@@ -153,7 +154,7 @@ export default class ProfileContainer extends Component {
                 'Accept': 'application/json'
             }
         })
-        this.setState({isFollowing: false})
+        this.setState({isFollowing: false, numFollowers: this.state.numFollowers-1})
     }
 
 
@@ -164,7 +165,7 @@ export default class ProfileContainer extends Component {
                     {this.checkRedirect()}
                     <h3>{this.state.username}</h3>
                     {this.renderWhosePage()}
-                    <p>Future Site of Profile Page</p>
+                    <p>Followers: {this.state.numFollowers}</p>
                 </div>
             )
         }
