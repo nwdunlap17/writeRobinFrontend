@@ -9,7 +9,7 @@ export default class MessageForm extends Component{
     }
 
     sendMessage = () => {
-        fetch(`${this.props.backendURL}/${this.props.recipient}/send-message`,{
+        fetch(`${this.props.backendURL}/users/${this.props.recipient}/send-message`,{
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
