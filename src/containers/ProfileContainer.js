@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import LogoutButton from '../components/LogoutButton'
 import {Redirect} from 'react-router-dom'
 import LoadingIndicator from '../components/LoadingIndicator'
+import MessageForm from '../components/MessageForm'
 
 export default class ProfileContainer extends Component {
     constructor(props){
@@ -15,6 +16,7 @@ export default class ProfileContainer extends Component {
             loaded: false,
             addClicked: false,
             redirect: false,
+            writeMessage: false,
             numFollowers: 0
         }
         this.getUserData()
@@ -90,18 +92,24 @@ export default class ProfileContainer extends Component {
                 {(!!localStorage.getItem('user') && localStorage.getItem('user') !== 'null')?
                     <div>
                     {(this.state.isFriends? 
-                        <button className='btn btn-danger' onClick={this.removeFriend}>Unfriend</button>
+                        <button className='btn btn-danger profile-button' onClick={this.removeFriend}>Unfriend</button>
                     :
                         (this.state.addClicked == false?
-                            <button className='btn btn-success' onClick={this.addFriend}>Add Friend</button>
+                            <button className='btn btn-success profile-button' onClick={this.addFriend}>Add Friend</button>
                         :
-                            <button className='btn btn-light'>Pending</button>))}
+                            <button className='btn btn-light profile-button'>Pending</button>))}
                     {(this.state.isFollowing?
-                        <button className='btn btn-danger' onClick={this.unfollow}>Unfollow</button>
+                        <button className='btn btn-danger profile-button' onClick={this.unfollow}>Unfollow</button>
                     :
-                        <button className='btn btn-success' onClick={this.follow}>Follow</button>
+                        <button className='btn btn-success profile-button' onClick={this.follow}>Follow</button>
                     
                     )}
+
+                        {this.state.writeMessage?
+                            <MessageForm recipient={this.state.id}/>
+                            :
+                            <button className='btn btn-light profile-button' onClick={() => this.setState({writeMessage:true})}>Message</button>
+                        }
                     </div>
                 :
                     null

@@ -254,3 +254,8 @@
   display: flex;
   flex-direction: row;
 }
+
+.profile-button{
+  margin-right: 10px;
+  
+}
