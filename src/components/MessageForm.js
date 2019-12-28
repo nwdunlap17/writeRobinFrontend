@@ -16,9 +16,9 @@ export default class MessageForm extends Component{
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
                 content: this.state.content
-            }
+            })
         })
         this.props.closeMessage()
     }
