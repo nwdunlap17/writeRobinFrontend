@@ -19,16 +19,15 @@ export default class SubmissionContainer extends Component{
     addSubmission = event => {
         event.preventDefault()
         if (this.state.characters > this.charLimit()){
-            window.alert(`Submissions must be within ${this.charLimit()} characters.`)
+            window.alert(`Snippets must be within ${this.charLimit()} characters.`)
             return 
         }
         if (this.state.characters < 20){
-            window.alert('Submissions must have more than 20 characters.')
+            window.alert('Snippets must have more than 20 characters.')
             return 
         }
-
         if (!'-".!?)'.includes(this.state.draft[this.state.draft.length-1]) || !this.state.draft.includes(' ')){
-            window.alert("Your submission doesn't look like a sentence. Please check your grammer!")
+            window.alert("Your snippet doesn't look like a paragraph. Please check your grammer!")
             return 
         }
         
@@ -57,10 +56,10 @@ export default class SubmissionContainer extends Component{
                 return(<form onSubmit={this.addSubmission} className='submssion-list-item'>
                         <textarea className='text-area' value={this.state.draft} onChange={event => this.setState({draft: event.target.value, characters: event.target.value.length})}/>
                         <p className='no-margin' >{this.charLimit()-this.state.characters}/{this.charLimit()}</p>
-                        <button type='submit' className='btn btn-success'>Add Submission</button>
+                        <button type='submit' className='btn btn-success'>New Snippet</button>
                        </form>)
             } else {
-                return (<button className='btn btn-light submssion-list-item' onClick={() => this.setState({showSubForm:true})}>Write New Submission</button>)
+                return (<button className='btn btn-light submssion-list-item' onClick={() => this.setState({showSubForm:true})}>Write New Snippet</button>)
             }
         } else {
             return null
