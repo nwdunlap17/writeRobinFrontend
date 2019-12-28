@@ -20,6 +20,7 @@ export default class MessageForm extends Component{
                 content: this.state.content
             }
         })
+        this.props.closeMessage()
     }
 
     render(){

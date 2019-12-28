@@ -106,7 +106,7 @@ export default class ProfileContainer extends Component {
                     )}
 
                         {this.state.writeMessage?
-                            <MessageForm recipient={this.state.id} backendURL={this.props.backendURL}/>
+                            <MessageForm recipient={this.state.id} backendURL={this.props.backendURL} closeMessage={this.closeMessage}/>
                             :
                             <button className='btn btn-light profile-button' onClick={() => this.setState({writeMessage:true})}>Message</button>
                         }
@@ -117,6 +117,10 @@ export default class ProfileContainer extends Component {
             </div>
         )
         
+    }
+
+    closeMessage = () => {
+        this.setState({writeMessage: false})
     }
 
     addFriend = () => {
